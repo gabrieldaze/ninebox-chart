@@ -67,8 +67,7 @@ class Chart {
 			'height':this.canvas.height / this.verticalPeriod.count - this.rectMargin
 		}
 	}
-	drawRectList(color, fontColor) {
-		this.context.fillStyle = color
+	drawRectList(color) {
 		this.context.font = '20px Arial'
 		var currentY = 0
 		for(var i = 0; i < this.verticalPeriod.count; i++) {
@@ -76,8 +75,8 @@ class Chart {
 			for(var j = 0; j < this.horizontalPeriod.count; j++) {
 				this.context.fillStyle = color
 				this.context.fillRect(currentX, currentY, this.getRectSize().width, this.getRectSize().height)
-				this.context.fillStyle = fontColor
-				this.context.fillText('ID: ' + (this.rectCount + 1), currentX + 20, currentY + this.getRectSize().height / 2)
+				// this.context.fillStyle = fontColor
+				// this.context.fillText('ID: ' + (this.rectCount + 1), currentX + 20, currentY + this.getRectSize().height / 2)
 				this.rectCollection.push({
 					'id':(this.rectCount).toString(),
 					'x':currentX,
@@ -85,7 +84,7 @@ class Chart {
 				});
 				currentX = currentX + this.getRectSize().width + this.rectMargin
 				this.rectCount = this.rectCount + 1
-			console.log('fillRect: ' + (this.rectCount-1) + ' - ' + currentX + ' - ' + currentY)
+			// console.log('fillRect: ' + (this.rectCount-1) + ' - ' + currentX + ' - ' + currentY)
 			}
 			currentY = currentY + this.getRectSize().height + this.rectMargin
 		}
@@ -97,6 +96,19 @@ class Chart {
 			if(rect.id == (id - 1).toString()) {
 				context.fillStyle = color
 				context.fillRect(rect.x, rect.y, size.width, size.height)
+			}
+		});
+	}
+	setRectContent(id, color, text, font = {'color':'#FFF', 'type':'Arial', 'size':'20px'}) {
+		var context = this.context
+		var size = this.getRectSize()
+		this.rectCollection.forEach(function(rect) {
+			if(rect.id == (id - 1).toString()) {
+				context.fillStyle = color
+				context.fillRect(rect.x, rect.y, size.width, size.height)
+				context.font = font.size + ' ' + font.type
+				context.fillStyle = font.color
+				context.fillText(text, rect.x + 10, rect.y + 10 + parseInt(font.size.replace('px','')))
 			}
 		});
 	}
