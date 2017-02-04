@@ -68,14 +68,19 @@ class Chart {
 			'height':this.canvas.height / this.verticalPeriod.count - this.rectMargin
 		}
 	}
-	drawRectList(color) {
+	drawRectList(color, fill = true) {
 		this.context.font = '20px Arial'
 		var currentY = 0
 		for(var i = 0; i < this.verticalPeriod.count; i++) {
 			var currentX = 0
 			for(var j = 0; j < this.horizontalPeriod.count; j++) {
-				this.context.fillStyle = color
-				this.context.fillRect(currentX, currentY, this.getRectSize().width, this.getRectSize().height)
+				if(fill) {
+					this.context.fillStyle = color
+					this.context.fillRect(currentX, currentY, this.getRectSize().width, this.getRectSize().height)
+				} else {
+					this.context.strokeStyle = color
+					this.context.strokeRect(currentX, currentY, this.getRectSize().width, this.getRectSize().height)
+				}
 				// this.context.fillStyle = fontColor
 				// this.context.fillText('ID: ' + (this.rectCount + 1), currentX + 20, currentY + this.getRectSize().height / 2)
 				this.rectCollection.push({
@@ -180,7 +185,9 @@ class Chart {
 	}
 	drawCircle(x, y, radius, color) {
 		this.context.fillStyle = color
+		this.context.globalAlpha = 0.3
 		this.context.arc(x, y, radius, 0, 2 * Math.PI)
 		this.context.fill();
+		this.context.globalAlpha = 1
 	}
 }
