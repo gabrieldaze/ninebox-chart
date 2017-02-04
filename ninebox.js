@@ -172,4 +172,15 @@ class Chart {
 			}
 		});
 	}
+	getPeriodPosition(horizontal, vertical) {
+		return {
+			'x':this.canvas.width / this.horizontalPeriod.limit * horizontal,
+			'y':this.canvas.height / this.verticalPeriod.limit * vertical
+		};
+	}
+	drawCircle(x, y, radius, color) {
+		this.context.fillStyle = color
+		this.context.arc(x, y, radius, 0, 2 * Math.PI)
+		this.context.fill();
+	}
 }
