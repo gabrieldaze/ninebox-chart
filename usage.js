@@ -10,7 +10,9 @@ window.onload = function() {
 	chart.setupCanvas(400, 400, 5, 40, 10)
 
 	// Set the color of each rule
-	chart.setRulesColor('#DDD', '#A00')
+	chart.setRuleColor('vertical', '#DDD', '#333')
+	chart.setRuleColor('horizontal', '#333', '#DDD')
+	// chart.setRulesColor('#DDD', '#A00')
 
 	// Set the vertical period
 	chart.setVerticalPeriod(0, 100, 3)
@@ -20,7 +22,7 @@ window.onload = function() {
 
 	// Draw the rectangles with a specific color
 	// The second parameter is if the rectangle is filled or not
-	chart.drawRectList('#000', true)
+	chart.drawRectList('#222', true)
 
 	// Set a persistent font for the chart
 	chart.setPersistentFont('Arial', 14, '#FFF', 15, 5)

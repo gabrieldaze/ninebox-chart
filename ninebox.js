@@ -74,13 +74,13 @@ class Chart {
 		// The parent element is the @canvasArea
 		var ruleVertical = document.createElement('div')
 		ruleVertical.id = 'ruleVertical'
-		ruleVertical.innerHTML = '<span id="potential">' + potentialString + '</span>'
+		ruleVertical.innerHTML = '<code id="potential">' + potentialString + '</code>'
 
 		// Create the horizontal rule to attach to the parent element
 		// The parent element is the @canvasArea
 		var ruleHorizontal = document.createElement('div')
 		ruleHorizontal.id = 'ruleHorizontal'
-		ruleHorizontal.innerHTML = '<span id="performance">' + performanceString + '</span>'
+		ruleHorizontal.innerHTML = '<code id="performance">' + performanceString + '</code>'
 
 		// Create the canvas to attach to the parent element
 		// The parent element is the @canvasArea
@@ -304,10 +304,15 @@ class Chart {
 	}
 
 	// Set the color of each rule
-	setRulesColor(verticalColor, horizontalColor) {
-		var ruleVertical = document.getElementById("ruleVertical")
-		ruleVertical.style.background = verticalColor
-		var ruleHorizontal = document.getElementById("ruleHorizontal")
-		ruleHorizontal.style.background = horizontalColor
+	setRuleColor(rule, background, textcolor) {
+		if(rule == 'vertical' || rule == 'potential') {
+			var rule = document.getElementById("ruleVertical")
+			rule.style.background = background
+			rule.style.color = textcolor
+		} else if(rule == 'horizontal' || rule == 'performance') {
+			var rule = document.getElementById("ruleHorizontal")
+			rule.style.background = background
+			rule.style.color = textcolor
+		}
 	}
 }
