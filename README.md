@@ -2,7 +2,7 @@
 A simple javascript library to create ninebox matrix<br>
 Follow this <a href="#guide">guide</a> to learn how to use it.
 
-<a href="http://imgur.com/a/cSJJf"><img src="http://i.imgur.com/iUnbcFi.png"/></a><br>
+<a href="http://imgur.com/a/2DSLC"><img src="http://i.imgur.com/SxSefhx.png"/></a><br>
 <br>
 <div id="guide">
 <p><strong>To use the ninebox-chart first you must create an instance of the class</strong></p>

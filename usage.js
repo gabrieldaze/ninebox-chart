@@ -1,7 +1,7 @@
 window.onload = function() {
 
 	// Create an instance of the chart class
-	chart = new Chart('Potencial', 'Performance')
+	chart = new Chart('Potential', 'Performance')
 
 	// Setup the canvas width, height, rectangle margin, rule size and rule margin
 	chart.setupCanvas(400, 400, 5, 40, 10)
