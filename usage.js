@@ -1,6 +1,3 @@
-// canvas = document.getElementById("canvas")
-// context = canvas.getContext('2d')
-
 window.onload = function() {
 
 	// Create an instance of the chart class
