@@ -1,4 +1,4 @@
 # ninebox-chart
 A simple javascript library to create ninebox matrix
 
-<img src="http://i.imgur.com/0DdDtxb.png"/>
+<a href="http://imgur.com/a/cSJJf"><img src="http://i.imgur.com/iUnbcFi.png"/></a>
