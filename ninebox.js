@@ -34,8 +34,69 @@ class Rect {
 	}
 }
 
+class Style {
+	constructor() {
+		this.lines = []
+	}
+	addRule(selector, style) {
+		this.lines.push(selector + '{' + style + '}')
+	}
+	getStyle() {
+		var styleText = ''
+		this.lines.forEach(function(line) {
+			styleText = styleText + line
+		});
+		return styleText
+	}
+}
+
 class Chart {
-	constructor(canvas, context) {
+	constructor(potentialString, performanceString) {
+
+		// Create the style to attach to the chart
+		var styleSheet = new Style()
+		styleSheet.addRule('#canvasArea', 'display: flex; flex-wrap: wrap; flex-direction: row;')
+		styleSheet.addRule('#ruleVertical', 'height: 480px; width: 50px; background: #09F; padding: 0;')
+		styleSheet.addRule('#potential', 'transform: rotate(-90deg); display: block;')
+		styleSheet.addRule('#ruleHorizontal', 'width: 640px; height: 50px; background: #0F9; padding: 0;')
+
+		// Attach the style to the document
+		var styleTag = document.createElement('style')
+		styleTag.type = 'text/css'
+		styleTag.innerHTML = styleSheet.getStyle()
+		document.body.appendChild(styleTag)
+
+		// Create the canvas area to attach the document
+		var canvasArea = document.createElement('div')
+		canvasArea.id = 'canvasArea'
+		
+		// Create the vertical rule to attach to the parent element
+		// The parent element is the @canvasArea
+		var ruleVertical = document.createElement('div')
+		ruleVertical.id = 'ruleVertical'
+		ruleVertical.innerHTML = '<span id="potential">' + potentialString + '</span>'
+
+		// Create the horizontal rule to attach to the parent element
+		// The parent element is the @canvasArea
+		var ruleHorizontal = document.createElement('div')
+		ruleHorizontal.id = 'ruleHorizontal'
+		ruleHorizontal.innerHTML = '<span id="performance">' + performanceString + '</span>'
+
+		// Create the canvas to attach to the parent element
+		// The parent element is the @canvasArea
+		var canvas = document.createElement('canvas')
+		canvas.id = 'canvas'
+
+		// Get the 2D context of the @canvas
+		var context = canvas.getContext('2d')
+		document.body.appendChild(canvasArea)
+
+		// Attach the elements to the parent element @canvasArea
+		document.getElementById('canvasArea').appendChild(ruleVertical)
+		document.getElementById('canvasArea').appendChild(canvas)
+		document.getElementById('canvasArea').appendChild(ruleHorizontal)
+
+		// Setup the main canvas attributes
 		this.canvas = canvas
 		this.context = context
 		this.rectCount = 0
@@ -45,9 +106,13 @@ class Chart {
 		this.rectMargin = 0
 		this.persistentFont = null
 	}
+
+	// Set the margin between the rectangles of the chart
 	setRectMargin(margin) {
 		this.rectMargin = margin
 	}
+
+	// Set the number of rows of the chart
 	setVerticalPeriod(start, limit, count) {
 		this.verticalPeriod = {
 			'start':start,
@@ -55,6 +120,8 @@ class Chart {
 			'count':count
 		}
 	}
+
+	// Set the number of columns of the chart
 	setHorizontalPeriod(start, limit, count) {
 		this.horizontalPeriod = {
 			'start':start,
@@ -62,12 +129,17 @@ class Chart {
 			'count':count
 		}
 	}
+
+	// Get the dynamic rectangle size of the chart
 	getRectSize() {
 		return {
 			'width':this.canvas.width / this.horizontalPeriod.count - this.rectMargin,
 			'height':this.canvas.height / this.verticalPeriod.count - this.rectMargin
 		}
 	}
+
+	// Draw all the rectangles in the chart
+	// The rectangles will be drawn from left to right and top to down
 	drawRectList(color, fill = true) {
 		this.context.font = '20px Arial'
 		var currentY = 0
@@ -95,6 +167,8 @@ class Chart {
 			currentY = currentY + this.getRectSize().height + this.rectMargin
 		}
 	}
+
+	// Set a persistent font for the chart
 	setPersistentFont(type, size, color, margin = 10, lineheight = 5) {
 		this.persistentFont = {
 			'type':type,
@@ -104,6 +178,8 @@ class Chart {
 			'lineheight':lineheight
 		};
 	}
+
+	// Set the color of a specific retangle
 	setRectColor(id, color) {
 		var context = this.context
 		var size = this.getRectSize()
@@ -114,6 +190,8 @@ class Chart {
 			}
 		});
 	}
+
+	// Draw a text on a specific position of the canvas
 	drawTextOnPos(point, text) {
 		var context = this.context
 		var rectsize = this.getRectSize()
@@ -136,6 +214,8 @@ class Chart {
 			context.fillText(text, point.x, point.y)
 		}
 	}
+
+	// Draw a text on a specific rectangle
 	drawTextOnRect(id, text) {
 		var context = this.context
 		var rectsize = this.getRectSize()
@@ -164,6 +244,9 @@ class Chart {
 		});
 
 	}
+
+	// Set the content of a specific rectangle
+	// The content is its color, font style and text
 	setRectContent(id, color, text, font = {'color':'#FFF', 'type':'Courier', 'size':'20px'}) {
 		var context = this.context
 		var size = this.getRectSize()
@@ -177,17 +260,54 @@ class Chart {
 			}
 		});
 	}
+
+	// Get the position of the period in the canvas
 	getPeriodPosition(horizontal, vertical) {
 		return {
 			'x':this.canvas.width / this.horizontalPeriod.limit * horizontal,
 			'y':this.canvas.height / this.verticalPeriod.limit * vertical
 		};
 	}
-	drawCircle(x, y, radius, color) {
+
+	// Draw a circle on the canvas
+	drawCircle(x, y, radius, color, opacity = 0.3) {
 		this.context.fillStyle = color
-		this.context.globalAlpha = 0.3
+		this.context.globalAlpha = opacity
 		this.context.arc(x, y, radius, 0, 2 * Math.PI)
 		this.context.fill();
 		this.context.globalAlpha = 1
+	}
+
+	// Set the canvas width, height, rectangle margn, rule size in pixels and the rule margin in pixels
+	setupCanvas(width, height, rectMargin, ruleSize, ruleMargin) {
+		this.canvas.width = width
+		this.canvas.height = height
+		this.rectMargin = rectMargin
+		var canvasArea = document.getElementById("canvasArea")
+		var ruleVertical = document.getElementById("ruleVertical")
+		var ruleHorizontal = document.getElementById("ruleHorizontal")
+		var potential = document.getElementById("potential")
+		var performance = document.getElementById("performance")
+		canvasArea.style.width = width + ruleSize + this.rectMargin + 'px'
+		ruleVertical.style.width = ruleSize + 'px'
+		ruleVertical.style.height = (height - this.rectMargin) + 'px'
+		ruleVertical.style.margin = '0 ' + this.rectMargin + 'px 0 0'
+		ruleHorizontal.style.width = (width - this.rectMargin) + 'px'
+		ruleHorizontal.style.height = ruleSize + 'px'
+		ruleHorizontal.style.margin = '0 0 0 ' + (ruleSize + this.rectMargin) + 'px'
+		potential.style.lineHeight = height - rectMargin - ruleMargin + 'px'
+		performance.style.display = 'block'
+		performance.style.width = '100%'
+		performance.style.height = '100%'
+		performance.style.textAlign = 'center'
+		performance.style.lineHeight = ruleSize + 'px'
+	}
+
+	// Set the color of each rule
+	setRulesColor(verticalColor, horizontalColor) {
+		var ruleVertical = document.getElementById("ruleVertical")
+		ruleVertical.style.background = verticalColor
+		var ruleHorizontal = document.getElementById("ruleHorizontal")
+		ruleHorizontal.style.background = horizontalColor
 	}
 }

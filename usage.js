@@ -1,21 +1,37 @@
-canvas = document.getElementById("canvas")
-context = canvas.getContext('2d')
+// canvas = document.getElementById("canvas")
+// context = canvas.getContext('2d')
 
-chart = new Chart(canvas, context)
-chart.setRectMargin(5)
-chart.setVerticalPeriod(0, 100, 3)
-chart.setHorizontalPeriod(0, 100, 3)
-chart.drawRectList('#000', true)
+window.onload = function() {
 
-// chart.setRectColor(1, '#09F')
-// chart.setRectContent(1, '#09F', 'ID 1', {'color':'#FFF', 'type':'Courier', 'size':'20px'})
-// chart.setRectContent(2, '#09F', 'ID 2', {'color':'#FFF', 'type':'Courier', 'size':'20px'})
-// chart.setRectContent(3, '#09F', Math.round(context.measureText('Gabriel').width) + 'px', {'color':'#FFF', 'type':'Courier', 'size':'20px'})
+	// Create an instance of the chart class
+	chart = new Chart('Potencial', 'Performance')
 
-chart.setPersistentFont('Arial', 22, '#FFF', 15, 5)
-// chart.drawTextOnRect(1, 'Hello[%]World!')
-// chart.drawTextOnRect(2, 'Another[%]text example')
-// chart.drawTextOnRect(9, 'This is[%]a new[%]rectangle')
+	// Setup the canvas width, height, rectangle margin, rule size and rule margin
+	chart.setupCanvas(400, 400, 5, 40, 10)
 
-circlePos = chart.getPeriodPosition(50, 15)
-chart.drawCircle(circlePos.x, circlePos.y, 50, 'green')
+	// Set the color of each rule
+	chart.setRulesColor('#DDD', '#A00')
+
+	// Set the vertical period
+	chart.setVerticalPeriod(0, 100, 3)
+
+	// Set the horizontal period
+	chart.setHorizontalPeriod(0, 100, 3)
+
+	// Draw the rectangles with a specific color
+	// The second parameter is if the rectangle is filled or not
+	chart.drawRectList('#000', true)
+
+	// Set a persistent font for the chart
+	chart.setPersistentFont('Arial', 14, '#FFF', 15, 5)
+
+	// Draw some texts inside specific rectangles
+	chart.drawTextOnRect(1, 'Hello[%]World!')
+	chart.drawTextOnRect(2, 'Another[%]text example')
+	chart.drawTextOnRect(9, 'This is[%]a new[%]rectangle')
+
+	// Draw a circle on a specific value of position
+	circlePos = chart.getPeriodPosition(70, 25)
+	chart.drawCircle(circlePos.x, circlePos.y, 50, 'green', 0.5)
+	
+}
