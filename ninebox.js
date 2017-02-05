@@ -295,7 +295,7 @@ class Chart {
 		ruleHorizontal.style.width = (width - this.rectMargin) + 'px'
 		ruleHorizontal.style.height = ruleSize + 'px'
 		ruleHorizontal.style.margin = '0 0 0 ' + (ruleSize + this.rectMargin) + 'px'
-		potential.style.lineHeight = height - rectMargin - ruleMargin + 'px'
+		potential.style.lineHeight = height + rectMargin + ruleMargin + 'px'
 		performance.style.display = 'block'
 		performance.style.width = '100%'
 		performance.style.height = '100%'
