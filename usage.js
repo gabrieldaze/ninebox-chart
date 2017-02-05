@@ -7,8 +7,8 @@ window.onload = function() {
 	chart.setupCanvas(400, 400, 5, 40, 10)
 
 	// Set the color of each rule
-	chart.setRuleColor('vertical', '#DDD', '#333')
-	chart.setRuleColor('horizontal', '#333', '#DDD')
+	chart.setRulerColor('vertical', '#DDD', '#333')
+	chart.setRulerColor('horizontal', '#333', '#DDD')
 	// chart.setRulesColor('#DDD', '#A00')
 
 	// Set the vertical period

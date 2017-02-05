@@ -56,9 +56,9 @@ class Chart {
 		// Create the style to attach to the chart
 		var styleSheet = new Style()
 		styleSheet.addRule('#canvasArea', 'display: flex; flex-wrap: wrap; flex-direction: row;')
-		styleSheet.addRule('#ruleVertical', 'height: 480px; width: 50px; background: #09F; padding: 0;')
+		styleSheet.addRule('#rulerVertical', 'height: 480px; width: 50px; background: #09F; padding: 0;')
 		styleSheet.addRule('#potential', 'transform: rotate(-90deg); display: block;')
-		styleSheet.addRule('#ruleHorizontal', 'width: 640px; height: 50px; background: #0F9; padding: 0;')
+		styleSheet.addRule('#rulerHorizontal', 'width: 640px; height: 50px; background: #0F9; padding: 0;')
 
 		// Attach the style to the document
 		var styleTag = document.createElement('style')
@@ -72,15 +72,15 @@ class Chart {
 		
 		// Create the vertical rule to attach to the parent element
 		// The parent element is the @canvasArea
-		var ruleVertical = document.createElement('div')
-		ruleVertical.id = 'ruleVertical'
-		ruleVertical.innerHTML = '<code id="potential">' + potentialString + '</code>'
+		var rulerVertical = document.createElement('div')
+		rulerVertical.id = 'rulerVertical'
+		rulerVertical.innerHTML = '<code id="potential">' + potentialString + '</code>'
 
 		// Create the horizontal rule to attach to the parent element
 		// The parent element is the @canvasArea
-		var ruleHorizontal = document.createElement('div')
-		ruleHorizontal.id = 'ruleHorizontal'
-		ruleHorizontal.innerHTML = '<code id="performance">' + performanceString + '</code>'
+		var rulerHorizontal = document.createElement('div')
+		rulerHorizontal.id = 'rulerHorizontal'
+		rulerHorizontal.innerHTML = '<code id="performance">' + performanceString + '</code>'
 
 		// Create the canvas to attach to the parent element
 		// The parent element is the @canvasArea
@@ -92,9 +92,9 @@ class Chart {
 		document.body.appendChild(canvasArea)
 
 		// Attach the elements to the parent element @canvasArea
-		document.getElementById('canvasArea').appendChild(ruleVertical)
+		document.getElementById('canvasArea').appendChild(rulerVertical)
 		document.getElementById('canvasArea').appendChild(canvas)
-		document.getElementById('canvasArea').appendChild(ruleHorizontal)
+		document.getElementById('canvasArea').appendChild(rulerHorizontal)
 
 		// Setup the main canvas attributes
 		this.canvas = canvas
@@ -284,17 +284,17 @@ class Chart {
 		this.canvas.height = height
 		this.rectMargin = rectMargin
 		var canvasArea = document.getElementById("canvasArea")
-		var ruleVertical = document.getElementById("ruleVertical")
-		var ruleHorizontal = document.getElementById("ruleHorizontal")
+		var rulerVertical = document.getElementById("rulerVertical")
+		var rulerHorizontal = document.getElementById("rulerHorizontal")
 		var potential = document.getElementById("potential")
 		var performance = document.getElementById("performance")
 		canvasArea.style.width = width + ruleSize + this.rectMargin + 'px'
-		ruleVertical.style.width = ruleSize + 'px'
-		ruleVertical.style.height = (height - this.rectMargin) + 'px'
-		ruleVertical.style.margin = '0 ' + this.rectMargin + 'px 0 0'
-		ruleHorizontal.style.width = (width - this.rectMargin) + 'px'
-		ruleHorizontal.style.height = ruleSize + 'px'
-		ruleHorizontal.style.margin = '0 0 0 ' + (ruleSize + this.rectMargin) + 'px'
+		rulerVertical.style.width = ruleSize + 'px'
+		rulerVertical.style.height = (height - this.rectMargin) + 'px'
+		rulerVertical.style.margin = '0 ' + this.rectMargin + 'px 0 0'
+		rulerHorizontal.style.width = (width - this.rectMargin) + 'px'
+		rulerHorizontal.style.height = ruleSize + 'px'
+		rulerHorizontal.style.margin = '0 0 0 ' + (ruleSize + this.rectMargin) + 'px'
 		potential.style.lineHeight = height + rectMargin + ruleMargin + 'px'
 		performance.style.display = 'block'
 		performance.style.width = '100%'
@@ -304,13 +304,13 @@ class Chart {
 	}
 
 	// Set the color of each rule
-	setRuleColor(rule, background, textcolor) {
+	setRulerColor(rule, background, textcolor) {
 		if(rule == 'vertical' || rule == 'potential') {
-			var rule = document.getElementById("ruleVertical")
+			var rule = document.getElementById("rulerVertical")
 			rule.style.background = background
 			rule.style.color = textcolor
 		} else if(rule == 'horizontal' || rule == 'performance') {
-			var rule = document.getElementById("ruleHorizontal")
+			var rule = document.getElementById("rulerHorizontal")
 			rule.style.background = background
 			rule.style.color = textcolor
 		}
