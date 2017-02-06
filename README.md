@@ -26,7 +26,7 @@ The third parameter is the <b>text colour</b><br>
 <code>chart.setHorizontalPeriod(0, 100, 3)</code><br><br>
 For both functions, the first parameter is the <b>start value</b> of your matrix<br>
 The second parameter is the <b>limit value</b><br>
-And the third parameter is the <b>number of rows</b> and columns of the chart respectively<br>
+And the third parameter is the <b>number of rows and columns</b> of the chart respectively<br>
 <br>
 <strong>With all set, now you can ask for the library to draw your chart</strong><br><br>
 <code>chart.drawRectList('#222', true)</code><br><br>
