@@ -248,8 +248,7 @@ class Chart {
 		}
 	}
 
-	// Set the color of each rule
-
+	// Setup the rulers
 	setupRuler(ruler, string, stringsize, background, textcolour) {
 		if(ruler == 'vertical' || ruler == 'potential') {
 			this.context.save()
@@ -272,6 +271,7 @@ class Chart {
 		}
 	}
 
+	// Set the color of each ruler
 	setRulerColor(rule, background, textcolor) {
 		if(rule == 'vertical' || rule == 'potential') {
 			var rule = document.getElementById("rulerVertical")
