@@ -12,16 +12,18 @@ The second parameter is the text of the <b>horizontal</b> ruler of the chart<br>
 <br>
 <strong>After that, you must setup the canvas properties</strong><br><br>
 <code>chart.setupCanvas(400, 400, 5, 40, 10)</code><br><br>
-The parameters are the canvas width, height, rectangle margin, ruler size and ruler margin<br>
+The parameters are the canvas width, canvas height, rectangle margin and ruler size<br>
 <br>
 <strong>Then you'll want to change each ruler's colour</strong><br><br>
-<code>chart.setrulerColor('vertical', '#DDD', '#333')</code><br>
-<code>chart.setrulerColor('horizontal', '#333', '#DDD')</code><br><br>
+<code>chart.setupRuler('vertical', 'Potential', 16, '#DDD', '#333')</code><br>
+<code>chart.setupRuler('horizontal', 'Performance', 16, '#333', '#DDD')</code><br><br>
 The first parameter stands for the <b>ruler name</b> that you're changing<br>
-The second parameter is the <b>background colour</b><br>
-The third parameter is the <b>text colour</b><br>
+The second parameter is the <b>text inside the ruler</b><br>
+The third parameter is the <b>font size</b><br>
+The fourth parameter is the <b>background colour</b><br>
+The fifth parameter is the <b>font colour</b><br>
 <br>
-<strong>After setting the colours, you'll want to specify your nine box matrix values</strong><br><br>
+<strong>After setting the rulers, you'll want to specify your nine box matrix values</strong><br><br>
 <code>chart.setVerticalPeriod(0, 100, 3)</code><br>
 <code>chart.setHorizontalPeriod(0, 100, 3)</code><br><br>
 For both functions, the first parameter is the <b>start value</b> of your matrix<br>
@@ -32,6 +34,11 @@ And the third parameter is the <b>number of rows and columns</b> of the chart re
 <code>chart.drawRectList('#222', true)</code><br><br>
 The first parameter is the <b>colour of the rectangles</b><br>
 The second parameter is if the rectangles are <b>filled or not</b><br>
+<br>
+<strong>You can also set the colour of a specific rectangle</strong><br><br>
+<code>chart.setRectColour(5, '#040')</code>
+The first parameter is the <b>id</b> of the rectangle<br>
+The second parameter is the <b>colour</b> of the rectangle<br>
 <br>
 <strong>Now, you can set a persistent font for your chart. It's optional</strong><br><br>
 <code>chart.setPersistentFont('Arial', 14, '#FFF', 15, 5)</code><br><br>

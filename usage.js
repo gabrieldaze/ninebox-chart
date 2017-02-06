@@ -4,12 +4,11 @@ window.onload = function() {
 	chart = new Chart('Potential', 'Performance')
 
 	// Setup the canvas width, height, rectangle margin, rule size and rule margin
-	chart.setupCanvas(400, 400, 5, 40, 10)
+	chart.setupCanvas(500, 500, 5, 40)
 
-	// Set the color of each rule
-	chart.setRulerColor('vertical', '#DDD', '#333')
-	chart.setRulerColor('horizontal', '#333', '#DDD')
-	// chart.setRulesColor('#DDD', '#A00')
+	// Setup each ruler
+	chart.setupRuler('vertical', 'Potential', 16, '#DDD', '#333')
+	chart.setupRuler('horizontal', 'Performance', 16, '#333', '#DDD')
 
 	// Set the vertical period
 	chart.setVerticalPeriod(0, 100, 3)
@@ -21,6 +20,9 @@ window.onload = function() {
 	// The second parameter is if the rectangle is filled or not
 	chart.drawRectList('#222', true)
 
+	// Set the colour of a specific rectangle
+	chart.setRectColour(5, '#040')
+
 	// Set a persistent font for the chart
 	chart.setPersistentFont('Arial', 14, '#FFF', 15, 5)
 
@@ -30,7 +32,7 @@ window.onload = function() {
 	chart.drawTextOnRect(9, 'This is[%]a new[%]rectangle')
 
 	// Draw a circle on a specific value of position
-	circlePos = chart.getPeriodPosition(70, 25)
+	circlePos = chart.getPeriodPosition(60, 30)
 	chart.drawCircle(circlePos.x, circlePos.y, 50, 'green', 0.5)
 	
 }
