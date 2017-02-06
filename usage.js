@@ -4,7 +4,7 @@ window.onload = function() {
 	chart = new Chart('Potential', 'Performance')
 
 	// Setup the canvas width, height, rectangle margin, rule size and rule margin
-	chart.setupCanvas(500, 500, 5, 40)
+	chart.setupCanvas(400, 400, 5, 40)
 
 	// Setup each ruler
 	chart.setupRuler('vertical', 'Potential', 16, '#DDD', '#333')

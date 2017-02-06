@@ -11,7 +11,7 @@ The first parameter is the text of the <b>vertical</b> ruler of the chart<br>
 The second parameter is the text of the <b>horizontal</b> ruler of the chart<br>
 <br>
 <strong>After that, you must setup the canvas properties</strong><br><br>
-<code>chart.setupCanvas(400, 400, 5, 40, 10)</code><br><br>
+<code>chart.setupCanvas(400, 400, 5, 40)</code><br><br>
 The parameters are the canvas width, canvas height, rectangle margin and ruler size<br>
 <br>
 <strong>Then you'll want to change each ruler's colour</strong><br><br>
