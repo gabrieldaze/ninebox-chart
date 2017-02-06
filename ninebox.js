@@ -37,10 +37,6 @@ class Rect {
 class Chart {
 	constructor(potentialString, performanceString) {
 
-		// Create the canvas area to attach the document
-		var canvasArea = document.createElement('div')
-		canvasArea.id = 'canvasArea'
-
 		// Create the canvas to attach to the parent element
 		// The parent element is the @canvasArea
 		var canvas = document.createElement('canvas')
