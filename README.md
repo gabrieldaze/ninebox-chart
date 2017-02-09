@@ -1,10 +1,8 @@
 # ninebox-chart
 A simple javascript library to create ninebox matrix
-Follow this [guide](#guide) to learn how to use it.
 
 ![Preview](preview.png)
 
-<div id="guide">
 #####To use the ninebox-chart, first you must create an instance of the class
 ```javascript
 chart = new Chart('Potential', 'Performance')
@@ -91,4 +89,3 @@ chart.drawCircle(circlePos.x, circlePos.y, 50, 'green', 0.5)
 3. The third parameter is the **radius** of your marker
 4. The fourth parameter is the **colour** of your marker
 5. The fifth parameter is the **opacity** of your marker
-</div>
