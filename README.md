@@ -74,16 +74,18 @@ chart.drawTextOnRect(9, 'This is[%]a new[%]rectangle')
 2. The second parameter is the **text**. The **[%]** symbol represents a new line
 
 #####And finally, you'll want to place the circle marker on your chart
+
+######First, get the position on the canvas by using the matrix values with the function *getPeriodPosition*
 ```javascript
 circlePos = chart.getPeriodPosition(70, 25)
 ```
-######First, get the position on the canvas by using the matrix values with the function *getPeriodPosition*
 1. The first parameter is the **horizontal value of your matrix**
 2. The second parameter is the **vertical value of your matrix**
+
+######Now with the position values, you can use the function <i>drawCircle</i> to draw your marker
 ```javascript
 chart.drawCircle(circlePos.x, circlePos.y, 50, 'green', 0.5)
 ```
-######Now with the position values, you can use the function <i>drawCircle</i> to draw your marker
 1. The first parameter is the **X position**
 2. The second parameter is the **Y position**
 3. The third parameter is the **radius** of your marker
