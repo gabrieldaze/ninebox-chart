@@ -103,14 +103,17 @@ class Chart {
 
 	// Set the color of a specific retangle
 	setRectColour(id, color) {
-		var context = this.context
-		var size = this.getRectSize()
-		this.rectCollection.forEach(function(rect) {
-			if(rect.id == (id - 1).toString()) {
-				context.fillStyle = color
-				context.fillRect(rect.x, rect.y, size.width, size.height)
+		for(var i = 0; i < this.rectCollection.length; i++) {
+			if(this.rectCollection[i].id == (id - 1).toString()) {
+				this.context.fillStyle = color
+				this.context.fillRect(
+					this.rectCollection[i].x,
+					this.rectCollection[i].y,
+					this.getRectSize().width,
+					this.getRectSize().height
+				)
 			}
-		});
+		}
 	}
 
 	// Draw a text on a specific position of the canvas
@@ -139,50 +142,48 @@ class Chart {
 
 	// Draw a text on a specific rectangle
 	drawTextOnRect(id, text) {
-		var context = this.context
-		var rectsize = this.getRectSize()
-		var color = this.persistentFont.color
-		var size = this.persistentFont.size
-		var type = this.persistentFont.type
-		var lineheight = this.persistentFont.lineheight
-		var margin = this.persistentFont.margin
 		var newLineCount = text.split("[%]").length - 1
-		context.fillStyle = color
-		context.font = size + 'px ' + type
+		this.context.fillStyle = this.persistentFont.color
+		this.context.font = this.persistentFont.size + 'px ' + this.persistentFont.type
 		this.context.textAlign = 'left'
-		var textSpacing = 0
-		this.rectCollection.forEach(function(rect) {
-			if(rect.id == (id - 1).toString()) {
-				var currentX = rect.x + margin + textSpacing
-				var currentY = rect.y + margin + size
-				if(newLineCount > 0) {	
-					var textSlices = text.split("[%]")
-					for(var i = 0; i <= newLineCount; i++) {
-						context.fillText(textSlices[i], currentX, currentY)
-						currentY += size + lineheight
+		for(var i = 0; i < this.rectCollection.length; i++) {
+			if(this.rectCollection[i].id == (id - 1).toString()) {
+				let currentX = this.rectCollection[i].x + this.persistentFont.margin
+				let currentY = this.rectCollection[i].y + this.persistentFont.margin + this.persistentFont.size
+				if(newLineCount > 0) {
+					let textSlices = text.split("[%]")
+					for(var j = 0; j <= newLineCount; j++) {
+						this.context.fillText(textSlices[j], currentX, currentY)
+						currentY += this.persistentFont.size + this.persistentFont.lineheight
 					}
 				} else {
-					context.fillText(text, currentX, currentY)
+					this.context.fillText(text, currentX, currentY)
 				}
 			}
-		});
-
+		}
 	}
 
 	// Set the content of a specific rectangle
 	// The content is its color, font style and text
 	setRectContent(id, color, text, font = {'color':'#FFF', 'type':'Courier', 'size':'20px'}) {
-		var context = this.context
-		var size = this.getRectSize()
-		this.rectCollection.forEach(function(rect) {
-			if(rect.id == (id - 1).toString()) {
-				context.fillStyle = color
-				context.fillRect(rect.x, rect.y, size.width, size.height)
-				context.font = font.size + ' ' + font.type
-				context.fillStyle = font.color
-				context.fillText(text, rect.x + 10, rect.y + 10 + parseFloat(font.size.replace('px','')))
+		for(var i = 0; i < this.rectCollection.length; i++) {
+			if(this.rectCollection[i].id == (id - 1).toString()) {
+				this.context.fillStyle = color
+				this.context.fillRect(
+					this.rectCollection[i].x,
+					this.rectCollection[i].y,
+					this.getRectSize().width,
+					this.getRectSize().height
+				)
+				this.context.font = font.size + 'px ' + font.type
+				this.context.fillStyle = font.color
+				this.context.fillText(
+					text,
+					this.rectCollection[i].x + 10,
+					this.rectCollection[i].y + 10 + parseFloat(font.size.replace('px',''))
+				)
 			}
-		});
+		}
 	}
 
 	// Get the position of the period in the canvas
