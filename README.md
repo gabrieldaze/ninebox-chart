@@ -91,3 +91,8 @@ chart.drawCircle(circlePos.x, circlePos.y, 50, 'green', 0.5)
 3. The third parameter is the **radius** of your marker
 4. The fourth parameter is the **colour** of your marker
 5. The fifth parameter is the **opacity** of your marker
+
+#####Finally you can ask the library to build your canvas
+```javascript
+chart.buildCanvas()
+```
