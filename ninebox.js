@@ -189,16 +189,16 @@ class Chart {
 		var textSpacing = 0
 		this.rectCollection.forEach(function(rect) {
 			if(rect.id == (id - 1).toString()) {
-				if(newLineCount > 0) {
-					var currentX = rect.x + margin + textSpacing
-					var currentY = rect.y + margin + size
+				var currentX = rect.x + margin + textSpacing
+				var currentY = rect.y + margin + size
+				if(newLineCount > 0) {	
 					var textSlices = text.split("[%]")
 					for(var i = 0; i <= newLineCount; i++) {
 						context.fillText(textSlices[i], currentX, currentY)
 						currentY += size + lineheight
 					}
 				} else {
-					context.fillText(text, point.x, point.y)
+					context.fillText(text, currentX, currentY)
 				}
 			}
 		});
