@@ -34,5 +34,5 @@ window.onload = function() {
 	// Draw a circle on a specific value of position
 	circlePos = chart.getPeriodPosition(60, 30)
 	chart.drawCircle(circlePos.x, circlePos.y, 50, 'green', 0.5)
-	
+	chart.buildCanvas()	
 }

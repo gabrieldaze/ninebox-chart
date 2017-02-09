@@ -44,7 +44,7 @@ class Chart {
 
 		// Get the 2D context of the @canvas
 		var context = canvas.getContext('2d')
-		document.body.appendChild(canvas)
+		// document.body.appendChild(canvas)
 
 		// Setup the main canvas attributes
 		this.canvas = canvas
@@ -57,6 +57,12 @@ class Chart {
 		this.persistentFont = null
 		this.potentialString = potentialString
 		this.performanceString = performanceString
+	}
+
+	buildCanvas() {
+		var img = document.createElement('img')
+		img.src = this.canvas.toDataURL("image/png")
+		document.body.appendChild(img)
 	}
 
 	// Set the margin between the rectangles of the chart
